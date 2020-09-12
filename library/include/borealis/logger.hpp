@@ -29,6 +29,7 @@ namespace brls
 enum class LogLevel
 {
     ERROR = 0,
+    WARNING,
     INFO,
     DEBUG
 };
@@ -64,6 +65,12 @@ class Logger
     inline static void error(std::string format, Args&&... args)
     {
         Logger::log(LogLevel::ERROR, "ERROR", "[0;31m", format, args...);
+    }
+
+    template <typename... Args>
+    inline static void warning(std::string format, Args&&... args)
+    {
+        Logger::log(LogLevel::WARNING, "WARNING", "[0;33m", format, args...);
     }
 
     template <typename... Args>

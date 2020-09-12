@@ -260,7 +260,7 @@ bool Application::init(std::string title, Style style, Theme theme)
         Application::fontStash.regular = Application::loadFont("regular", BOREALIS_ASSET("inter/Inter-Switch.ttf"));
 
     if (Application::fontStash.regular == -1)
-        brls::Logger::error("Couldn't load regular font, no text will be displayed!");
+        brls::Logger::warning("Couldn't load regular font, no text will be displayed!");
 
     if (access(BOREALIS_ASSET("Wingdings.ttf"), F_OK) != -1)
         Application::fontStash.sharedSymbols = Application::loadFont("sharedSymbols", BOREALIS_ASSET("Wingdings.ttf"));
@@ -278,7 +278,7 @@ bool Application::init(std::string title, Style style, Theme theme)
     }
     else
     {
-        Logger::error("Shared symbols font not found");
+        Logger::warning("Shared symbols font not found");
     }
 
     // Set Material as fallback
@@ -289,7 +289,7 @@ bool Application::init(std::string title, Style style, Theme theme)
     }
     else
     {
-        Logger::error("Material font not found");
+        Logger::warning("Material font not found");
     }
 
     // Load theme
@@ -639,13 +639,13 @@ void Application::setDisplayFramerate(bool enabled)
 {
     if (!Application::framerateCounter && enabled)
     {
-        Logger::info("Enabling framerate counter");
+        Logger::debug("Enabling framerate counter");
         Application::framerateCounter = new FramerateCounter();
         Application::resizeFramerateCounter();
     }
     else if (Application::framerateCounter && !enabled)
     {
-        Logger::info("Disabling framerate counter");
+        Logger::debug("Disabling framerate counter");
         delete Application::framerateCounter;
         Application::framerateCounter = nullptr;
     }
